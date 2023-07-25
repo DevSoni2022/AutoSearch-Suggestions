@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -35,4 +36,36 @@
   to {
     transform: rotate(360deg);
   }
+}
+.main-container{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+input{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.search-text{
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 30px;
+}
+.search-content{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  height: 300px;
+  overflow-y: auto;
+  margin: 10px;
+  text-align: center;
+  display: inline-block;
+  justify-content: center;
+  text-align: left;
+}
+li{
+  text-align: center;
+  padding: 15px;
 }

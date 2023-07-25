@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [data, setData] = useState(null);
+  const [searchText, setSearchText] = useState(null);
+  const [searchData, setSearchData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+        setData(res);
+      });
+  }, []);
+
+  const HandleOnChange = (event) => {
+    let text = event.target.value;
+    setSearchText(text);
+    const result =
+      searchText &&
+      data.length > 0 &&
+      data.filter((ele, index) => {
+        return ele.title.toLowerCase().includes(searchText.toLowerCase());
+      });
+    setSearchData(result);
+    console.log(result, "SearchDAta");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      <div className="search-text">
+      <input
+        type="text"
+        onChange={(e) => HandleOnChange(e)}
+        value={searchText}
+        placeholder="Search somthing here"
+      />
+</div>
+<div className="search-content">      {searchData &&
+        searchData.length > 0 &&
+        searchData.map((ele, index) => {
+          return <li>{ele.title} </li>;
+        })}
+        </div>
+
     </div>
   );
-}
+};
 
 export default App;
